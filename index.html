@@ -128,9 +128,9 @@
          const afterDidYouKnow = document.getElementById("afterDidYouKnow");
          initDykh = initDykh === -1 ? didYouKnow.offsetHeight : initDykh;
          const didYouKnowBottom = boundRect.bottom;
-         const didYouKnowPadding = 180;
-         const didYouKnowDuration = 36;
-         if (position <= 4) {
+         const didYouKnowPadding = 312;
+         const didYouKnowDuration = 64;
+         if (position <= 48) {
             didYouKnow.hidden = false;
             afterDidYouKnow.style.transform = `translate( 0, 100vw )`
             didYouKnow.style.height = `100%`
@@ -160,7 +160,7 @@
          }
 
          // startServiceAre Points Animation
-         const startPoint = 64
+         const startPoint = initDykh - 312 + 64;
          const breakPointDiff = 16
          for (let index = 0; index < numStartServicePoints; index++) {
             if (animateStartServiceArea[index]) {
