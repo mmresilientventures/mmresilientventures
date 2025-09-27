@@ -120,14 +120,15 @@
       const numVa = 10;
       var initDykh = -1;
       function onScroll() {
-         const position = window.pageYOffset;
+         const position = window.scrollY;
          const lowerPosition = position + window.innerHeight;
          // didYouKnow Animation
          const didYouKnow = document.getElementById("didYouKnow");
-         const afterDidYouKnow = document.getElementById("afterDidYouKnow")
+         const boundRect = didYouKnow.getBoundingClientRect();
+         const afterDidYouKnow = document.getElementById("afterDidYouKnow");
          initDykh = initDykh === -1 ? didYouKnow.offsetHeight : initDykh;
-         const didYouKnowBottom = didYouKnow.offsetTop + initDykh;
-         const didYouKnowPadding = 16;
+         const didYouKnowBottom = boundRect.bottom;
+         const didYouKnowPadding = 180;
          const didYouKnowDuration = 36;
          if (position <= 4) {
             didYouKnow.hidden = false;
@@ -137,10 +138,10 @@
             didYouKnow.style.transform = `scale(1, 1)`
             didYouKnow.style.opacity = 1;
             animateStartServiceArea = new Array(numStartServicePoints).fill(true);
-         } else if (lowerPosition + didYouKnowPadding <= didYouKnowBottom) {
+         } else if (lowerPosition - didYouKnowPadding <= didYouKnowBottom) {
             didYouKnow.hidden = false;
             afterDidYouKnow.style.transform = `translate( 0, 100vw )`
-            var remaining = didYouKnowBottom - lowerPosition - didYouKnowPadding;
+            var remaining = didYouKnowBottom - lowerPosition + didYouKnowPadding;
             if (remaining <= didYouKnowDuration) {
                var ratio = Math.max(0, remaining / didYouKnowDuration);
                didYouKnow.style.height = `${ratio * initDykh}px`
